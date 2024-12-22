@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Header from './sections/header/Header';
+import Header from './sections/header/header';
 import PlatformHeader from './plateform/header/Header';
 import Movies from './sections/movies/movies';
 import Plateform from './plateform/plateform';
