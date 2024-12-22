@@ -6,10 +6,6 @@ import Plateform from './plateform/plateform';
 import Footer from './sections/Footer/footer';
 import MovieDetail from './plateform/movieDetail';
 import WatchList from './plateform/watchlist/watchlist';
-import Exercice from '../tp/tp';
-import Exer from '../tp2/tp2';
-import Exertp from '../tp3';
-import Efm from '../efm/efm';
 import './App.css';
 import { useState } from 'react';
 
@@ -43,10 +39,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Movies />} />
         <Route path="/plateform" element={<Plateform />} />
-        <Route path="/exercice" element={<Exercice />} />
-        <Route path="/efm" element={<Efm />} />
-        <Route path="/exer" element={<Exer />} />
-        <Route path="/tpv" element={<Exertp />} />
         <Route
           path="/:type/:id"
           element={<MovieDetail addToWatchlist={addToWatchlist} />} // Pass addToWatchlist
