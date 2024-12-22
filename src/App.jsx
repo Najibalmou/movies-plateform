@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './sections/header/header';
-import PlatformHeader from './plateform/header/Header';
+import PlatformHeader from './plateform/header/header';
 import Movies from './sections/movies/movies';
 import Plateform from './plateform/plateform';
 import Footer from './sections/Footer/footer';
