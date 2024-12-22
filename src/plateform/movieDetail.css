@@ -1,0 +1,50 @@
+:root {
+    --text-color: #fff;
+    --button-bg-color: #333;
+    --button-text-color: #fff;
+  }
+  
+  .dark-theme {
+    --text-color: #222;
+    --button-bg-color: #555;
+    --button-text-color: #e0e0e0;
+  }
+
+.vidMovie-infos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+.movie iframe {
+    max-width: 760px;
+    height: 315px;
+    border: none;
+}
+  
+.infos {
+    width: 400px;
+}
+.img-movie {
+    width: 185px;
+    margin-right: 50px;
+}
+.info-movie {
+    color: var(--text-color);
+}
+.info-movie-overview {
+    color: var(--text-color);
+    text-align: left;
+}
+
+.info-movie-value {
+    color: red;
+}
+
+.add-to-watchlist {
+    cursor: pointer;
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: none;
+    padding: 7px;
+}

@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  font-family: 'poppins';
+  color: #222;
+
+}
+
+:root {
+  --background-color: #fff;
+  --text-color: #333;
+  --button-bg-color: #333;
+  --button-text-color: #fff;
+}
+
+.dark-theme {
+  --background-color: #333;
+  --text-color: #fff;
+  --button-bg-color: #555;
+  --button-text-color: #eee;
+}
+
+/* Global theme styles */
+.app {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Light Mode */
+.light-mode {
+  color: #222;
+  background-color: #fff;
+}
+
+/* Dark Mode */
+.dark-mode {
+  color: #ddd;
+  background-color: #333;
+}

@@ -1,0 +1,59 @@
+:root {
+  --background-color: #ffffff;
+  --text-color: #222;
+  --navbar-background: #ffffff;
+  --navbar-text-color: #242525;
+  --navbar-border-color: #cecdcd;
+  --movie-card-background: #fff;
+  --movie-title-color: #222;
+  --scrollbar-thumb-color: #222;
+}
+
+/* Dark mode variables */
+body.dark-theme {
+  --background-color: #121212;
+  --text-color: #e0e0e0;
+  --navbar-background: #333;
+  --navbar-text-color: #e0e0e0;
+  --navbar-border-color: #444;
+  --movie-card-background: #121212;
+  --movie-title-color: #e0e0e0;
+  --scrollbar-thumb-color: #e0e0e0;
+}
+
+
+.movie-details-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  .trailer-container {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .info-container {
+    flex: 1;
+    text-align: left;
+    margin-left: 20px;
+  }
+
+  .info-container h1 {
+    color: var(--text-color);
+  }
+  
+  .info-container p {
+    color: var(--text-color);
+  }
+  
+  .movie-image {
+    width: 500px;
+    border-radius: 8px;
+  }
+  
+  .Trailer-video {
+    border-radius: 8px;
+    width: 725px;
+  }
+

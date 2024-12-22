@@ -1,0 +1,360 @@
+:root {
+    /* Light Theme Variables */
+    --background-color: #fff;
+    --text-color: #333;
+    --link-color: #242524;
+    --link-hover-color: #484848;
+    --logo-color: #333;
+    --register-bg-color: rgb(220, 29, 29);
+    --register-hover-bg-color: rgb(218, 40, 40);
+    --login-bg-color: rgb(34, 34, 34);
+    --login-hover-bg-color: rgb(54, 53, 53);
+    --popup-bg-color: #fff;
+    --popup-overlay-color: rgba(0, 0, 0, 0.5);
+    --close-btn-color: #222;
+    --button-bg-color: #333;
+    --button-text-color: #fff;
+    --log-out-text: #dc1d1d;
+  }
+  
+  .dark-theme {
+    /* Dark Theme Variables */
+    --background-color: #1a1a1a;
+    --text-color: #f0f0f0;
+    --link-color: #d1d1d1;
+    --link-hover-color: #e2e2e2;
+    --logo-color: #e2e2e2;
+    --register-bg-color: rgb(170, 26, 26);
+    --register-hover-bg-color: rgb(180, 36, 36);
+    --login-bg-color: #555;
+    --login-hover-bg-color: #666;
+    --popup-bg-color: #333;
+    --popup-overlay-color: rgba(0, 0, 0, 0.8);
+    --close-btn-color: #f0f0f0;
+    --button-bg-color: #555;
+    --button-text-color: #e0e0e0;
+    --log-out-text: #dc1d1d;
+  }
+  
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+
+  .login-register-div {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-sec {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .logo {
+    color: var(--logo-color);
+    margin: 0 1rem;
+    text-decoration: none;
+    font-family: 'Poppins';
+    font-weight: 800;
+  }
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+  }
+  .navbar a {
+    color: var(--link-color);
+    margin: 0 1rem;
+    text-decoration: none;
+    font-family: 'Poppins';
+    font-weight: 500;
+  }
+  
+  .navbar a:hover {
+    color: var(--link-hover-color);
+  }
+  
+  /* Login and Register Buttons */
+  .register {
+    color: #fff;
+    background-color: var(--register-bg-color);
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .login {
+    color: #fff;
+    background-color: var(--login-bg-color);
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  
+  .login:hover {
+    background-color: var(--login-hover-bg-color);
+  }
+  
+  .register:hover {
+    background-color: var(--register-hover-bg-color);
+  }
+  
+  /* Popup Overlay and Form */
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--popup-overlay-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .popup-form {
+    background-color: var(--popup-bg-color);
+    padding: 2rem;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    position: relative;
+    color: var(--text-color);
+  }
+  
+  .popup-form h2 {
+    margin-bottom: 1rem;
+    font-family: 'Poppins';
+  }
+  
+  .popup-form form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .popup-form form button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    color: var(--close-btn-color);
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .Login-btn-pop-up {
+    background-color: var(--login-bg-color);
+  }
+  
+  .Register-btn-pop-up {
+    background-color: var(--register-bg-color);
+  }
+  
+
+
+  .theme-toggle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+  }
+
+ 
+/* Hide the checkbox itself */
+.checkbox {
+    opacity: 0;
+    position: absolute;
+  }
+  
+  /* The label for the toggle switch */
+  .checkbox-label {
+    background-color: #111;
+    width: 50px;
+    height: 26px;
+    border-radius: 50px;
+    position: relative;
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Ball inside the switch */
+  .checkbox-label .ball {
+    background-color: #fff;
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    left: 2px; 
+    top: 2px;
+    border-radius: 50%;
+    transition: transform 0.2s linear;
+  }
+  
+  /* When the checkbox is checked, move the ball to the right */
+  .checkbox:checked + .checkbox-label .ball {
+    transform: translateX(24px);
+  }
+  
+  /* Icon styling for moon and sun */
+  .checkbox-label i {
+    font-size: 16px;
+    transition: opacity 0.3s ease;
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  /* Show the moon icon on the right in light mode */
+  .checkbox-label i.fa-moon {
+    opacity: 1;
+    z-index: -1; 
+    right: 5px;  
+    color: #f1c40f;
+  }
+  
+  /* Show the sun icon on the left when dark mode is active */
+  .checkbox:checked + .checkbox-label i.fa-sun {
+    opacity: 1;
+    z-index: 1; 
+    left: 5px;  
+    color: #f39c12;
+  }
+  
+  /* When dark mode is active, hide the moon icon */
+  body.dark .checkbox-label i.fa-moon {
+    opacity: 0;
+    z-index: -1;
+  }
+  
+  /* When dark mode is active, show the sun icon */
+  body.dark .checkbox-label i.fa-sun {
+    opacity: 1;
+    z-index: 1; 
+  }
+  
+  body.dark .checkbox-label {
+    background-color: #222;
+  }
+
+
+.UserName {
+  color: var(--text-color);
+  padding-left: 10px;
+}
+
+
+.logout {
+  color: var(--log-out-text);
+  text-decoration: none;
+  padding-left: 10px;
+}
+
+
+
+.search-input {
+  border-radius: 5px;
+  border: 1px solid #444;
+  width: 170px;
+  height: 22px;
+  margin-right: 15px;
+}
+
+
+.search-results {
+  position: absolute;
+  top: 10;
+  width: 170px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  max-height: 120px;
+  overflow-y: auto;
+  z-index: 1000;
+  list-style: none;
+  padding: 2px;
+  margin: 0;
+}
+
+.search-results li {
+  font-size: 13px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.search-results li:hover {
+  background-color: #f0f0f0;
+  color: #222;
+}
+.search-results {
+  border: 1px solid var(--button-bg-color); 
+}
+
+
+.user-dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+.user-logo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid var(--button-bg-color);
+}
+
+/* Dropdown menu styles */
+.dropdown-menu {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  z-index: 10;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Username and logout link styles */
+.dropdown-menu .UserName,
+.dropdown-menu .WatchList,
+.dropdown-menu .logout {
+  display: block;
+  padding: 8px 12px;
+  color: black;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Hover effect for username and logout */
+.dropdown-menu .UserName:hover,
+.dropdown-menu .WatchList:hover,
+.dropdown-menu .logout:hover {
+  background-color: #f0f0f0; /* Light gray background on hover */
+  color: #333; /* Darker text color on hover */
+}

@@ -1,0 +1,234 @@
+/* Base variables for light mode */
+:root {
+    --background-color: #ffffff;
+    --text-color: #222;
+    --navbar-background: #ffffff;
+    --navbar-text-color: #242525;
+    --navbar-border-color: #cecdcd;
+    --movie-card-background: #fff;
+    --movie-title-color: #222;
+    --scrollbar-thumb-color: #222;
+    --btn-background : #222;
+    --text-color-btn : #fff;
+}
+
+/* Dark mode variables */
+body.dark-theme {
+    --background-color: #121212;
+    --text-color: #e0e0e0;
+    --navbar-background: #333;
+    --navbar-text-color: #e0e0e0;
+    --navbar-border-color: #444;
+    --movie-card-background: #121212;
+    --movie-title-color: #e0e0e0;
+    --scrollbar-thumb-color: #e0e0e0;
+    --btn-background : #f0ecec;
+    --text-color-btn : #222;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+img {
+    width: 150px; /* Smaller image size */
+    border-radius: 12px;
+    padding-top: 5px;
+}
+
+/* Movie section styles */
+.movies-sec {
+    display: flex;
+    justify-content: space-around;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 20px;
+}
+
+.Nav-first-second {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+}
+
+.vertical-navbar {
+    padding: 10px;
+    border: 1px solid var(--navbar-border-color);
+    border-radius: 8px;
+    width: 100%;
+    background-color: var(--navbar-background);
+    height: 300px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.vertical-navbar a {
+    color: var(--navbar-text-color);
+    margin: 0 1rem;
+    text-decoration: none;
+    font-family: 'poppins';
+    font-weight: 500;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 20px;
+    transition: color 0.3s ease;
+}
+
+.icon-ver-nav {
+    padding-top: 3px;
+    padding-right: 7px;
+}
+
+/* Styling for movie cards layout */
+.movies-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Align to the left */
+    gap: 20px; /* Add spacing between movie cards */
+    margin-top: 10px;
+}
+
+.movie-card {
+    border-radius: 7px;
+    height: 320px;
+    width: 160px; /* Adjust card width */
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: var(--movie-card-background);
+}
+
+.movie-title {
+    margin-bottom: 10px;
+    text-transform: capitalize;
+    color: var(--movie-title-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* Styling for the movie section header */
+.movies-btnshow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .show-more {
+    background-color: var(--btn-background);
+    color: var(--text-color-btn);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .movie-text {
+    color: var(--text-color);
+  }
+  
+
+/* Styling for button cards wrapper */
+.div-btnCards {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-left: 60px;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb-color);
+}
+
+
+
+
+/* Popup overlay */
+.popup-overlay {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeOut 4s forwards; /* Fade-out animation */
+}
+
+/* Popup content */
+.popup-content {
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    width: 400px;
+    height: 35px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 540px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Popup message container */
+.popup-message {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Spacing between icon and text */
+}
+
+/* Popup icon */
+.popup-icon {
+    font-size: 24px;
+}
+
+/* Popup text */
+.popup-text {
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* Close button */
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Fade-out animation */
+/* @keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 0.1;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden; /* Hides the popup after fade-out */
+   
+
+
