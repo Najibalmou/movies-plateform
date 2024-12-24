@@ -31,54 +31,49 @@ function Header() {
     const password = event.target.elements[2].value;
 
     try {
-      const response = await fetch('http://localhost:5000/api/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, email, password }),
-      });
+        const response = await fetch('/api/register', { // Updated URL for Vercel
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, email, password }),
+        });
 
-      const data = await response.json();
-      if (response.ok) {
-        alert(data.message);
-        closeRegister();
-      } else {
-        alert(data.message); // Show server error message
-      }
+        const data = await response.json();
+        if (response.ok) {
+            alert(data.message);
+            closeRegister();
+        } else {
+            alert(data.message);
+        }
     } catch (error) {
-      console.error('Registration error:', error);
-      alert('Failed to register');
+        console.error('Registration error:', error);
+        alert('Failed to register');
     }
-  };
+};
 
-  const handleLoginSubmit = async (event) => {
+const handleLoginSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:5000/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
+        const response = await fetch('/api/login', { // Updated URL for Vercel
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password }),
+        });
 
-      const data = await response.json();
-      if (response.ok) {
-        // Store user information in localStorage
-        localStorage.setItem('user', JSON.stringify(data.user)); // `data.user` contains username and email
-
-        alert(data.message);
-        navigate('/plateform'); // Redirect after login
-      } else {
-        alert(data.message);
-      }
+        const data = await response.json();
+        if (response.ok) {
+            localStorage.setItem('user', JSON.stringify(data.user));
+            alert(data.message);
+            navigate('/plateform');
+        } else {
+            alert(data.message);
+        }
     } catch (error) {
-      console.error('Login error:', error);
-      alert('Login failed, please try again');
+        console.error('Login error:', error);
+        alert('Login failed, please try again');
     }
-  };
+};
+
 
 
 
