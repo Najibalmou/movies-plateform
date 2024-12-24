@@ -3,57 +3,58 @@ import cors from 'cors';
 import { MongoClient, ServerApiVersion } from 'mongodb';
 import dotenv from 'dotenv';
 
-dotenv.config(); // Load environment variables from .env file
+dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
 
-// MongoDB Atlas connection string from environment variables
-const uri = process.env.MONGODB_URI; // This should be set in your .env file
+// Automatically assigned port by Vercel
+const PORT = process.env.PORT || 3000;
 
-// MongoDB client setup
+// MongoDB connection setup
+const uri = process.env.MONGODB_URI;
+
 const client = new MongoClient(uri, {
     serverApi: {
         version: ServerApiVersion.v1,
         strict: true,
         deprecationErrors: true,
-    }
+    },
 });
 
-// Middleware to allow only the production URL
+// CORS configuration for production
 const allowedOrigins = [
-    'https://movies-plateform.vercel.app' // Only allow Vercel frontend URL
+    'https://movies-plateform.vercel.app', // Frontend URL
 ];
 
-app.use(cors({
-    origin: (origin, callback) => {
-        // Allow requests without origin (like mobile apps or curl requests)
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error('CORS not allowed for this origin'), false);
-        }
-    }
-}));
+app.use(
+    cors({
+        origin: (origin, callback) => {
+            if (!origin || allowedOrigins.includes(origin)) {
+                callback(null, true);
+            } else {
+                callback(new Error('CORS not allowed for this origin'));
+            }
+        },
+    })
+);
 
-app.use(express.json()); // Parse JSON request bodies
+app.use(express.json());
 
-// Connect to MongoDB
+// MongoDB Connection
 async function connectToMongo() {
     try {
         await client.connect();
-        await client.db("admin").command({ ping: 1 });
-        console.log("Pinged your deployment. You successfully connected to MongoDB!");
+        await client.db('admin').command({ ping: 1 });
+        console.log('Connected to MongoDB successfully');
     } catch (error) {
-        console.error("MongoDB connection error:", error);
+        console.error('MongoDB connection error:', error);
     }
 }
 
-// Define the User collection
-const database = client.db("NA-Movies"); // Replace with your database name
-const usersCollection = database.collection("users"); // Replace with your collection name
+const database = client.db('NA-Movies');
+const usersCollection = database.collection('users');
 
-// Registration route
+// Registration Route
 app.post('/api/register', async (req, res) => {
     const { username, email, password } = req.body;
 
@@ -63,7 +64,7 @@ app.post('/api/register', async (req, res) => {
             return res.status(400).json({ message: 'Email already registered' });
         }
 
-        const newUser = { username, email, password }; // Store password in plain text
+        const newUser = { username, email, password };
         await usersCollection.insertOne(newUser);
 
         res.status(201).json({ message: 'User registered successfully' });
@@ -73,42 +74,28 @@ app.post('/api/register', async (req, res) => {
     }
 });
 
-// Login route
+// Login Route
 app.post('/api/login', async (req, res) => {
     const { email, password } = req.body;
 
     try {
         const user = await usersCollection.findOne({ email });
-        if (!user) {
+        if (!user || user.password !== password) {
             return res.status(400).json({ message: 'Invalid email or password' });
         }
 
-        // Compare passwords directly (no hashing)
-        if (user.password !== password) {
-            return res.status(400).json({ message: 'Invalid email or password' });
-        }
-
-        // Include the username in the response
-        res.status(200).json({ message: 'Login successful', user: { username: user.username, email: user.email } });
+        res.status(200).json({
+            message: 'Login successful',
+            user: { username: user.username, email: user.email },
+        });
     } catch (error) {
         console.error('Error logging in:', error);
         res.status(500).json({ message: 'Error logging in', error });
     }
 });
 
-// Define a test route for logging users
-async function logUsers() {
-    try {
-        const users = await usersCollection.find({}).toArray();
-        console.log("Users in the database:", users);
-    } catch (error) {
-        console.error("Error fetching users:", error);
-    }
-}
-
-// Start server and connect to MongoDB
+// Start server
 app.listen(PORT, async () => {
     console.log(`Server running on port ${PORT}`);
-    await connectToMongo(); // Connect to MongoDB when server starts
-    await logUsers(); // Log users for testing
+    await connectToMongo();
 });
