@@ -9,7 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // MongoDB Atlas connection string from environment variables
-const uri = process.env.MONGODB_URI; // This should be set in your Vercel environment variables
+const uri = process.env.MONGODB_URI; // This should be set in your .env file
 
 // MongoDB client setup
 const client = new MongoClient(uri, {
@@ -20,12 +20,22 @@ const client = new MongoClient(uri, {
     }
 });
 
-// Middleware to dynamically set CORS origin
-const allowedOrigin = process.env.NODE_ENV === 'production'
-  ? 'https://movies-plateform.vercel.app/' // Production URL (Vercel frontend)
-  : 'http://localhost:5173'; // Local development URL
+// Middleware to allow only the production URL
+const allowedOrigins = [
+    'https://movies-plateform.vercel.app' // Production URL hosted on Vercel
+];
 
-app.use(cors({ origin: allowedOrigin })); // Enable CORS based on the environment
+app.use(cors({
+    origin: (origin, callback) => {
+        // Allow requests without origin (like mobile apps or curl requests)
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('CORS not allowed for this origin'), false);
+        }
+    }
+}));
+
 app.use(express.json()); // Parse JSON request bodies
 
 // Connect to MongoDB
@@ -96,11 +106,9 @@ async function logUsers() {
     }
 }
 
-// The default export is the handler for the serverless function
-export default async function handler(req, res) {
-    // Connect to MongoDB when the function is invoked
-    await connectToMongo();
-    
-    // Handle the request
-    app(req, res);
-}
+// Start server and connect to MongoDB
+app.listen(PORT, async () => {
+    console.log(`Server running on port ${PORT}`);
+    await connectToMongo(); // Connect to MongoDB when server starts
+    await logUsers(); // Log users for testing
+});
