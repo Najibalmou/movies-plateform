@@ -22,7 +22,7 @@ const client = new MongoClient(uri, {
 
 // Middleware to allow only the production URL
 const allowedOrigins = [
-    'https://movies-plateform.vercel.app' // Production URL hosted on Vercel
+    'https://movies-plateform.vercel.app' // Only allow Vercel frontend URL
 ];
 
 app.use(cors({
