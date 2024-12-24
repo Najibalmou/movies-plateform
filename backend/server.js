@@ -20,9 +20,6 @@ const client = new MongoClient(uri, {
     }
 });
 
-// Middleware
-app.use(cors({ origin: 'http://localhost:5173' })); // Enable CORS
-app.use(express.json()); // Parse JSON request bodies
 
 // Connect to MongoDB
 async function connectToMongo() {
