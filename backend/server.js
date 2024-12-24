@@ -55,7 +55,7 @@ const database = client.db('NA-Movies');
 const usersCollection = database.collection('users');
 
 // Registration Route
-app.post('/api/register', async (req, res) => {
+app.post('/register', async (req, res) => {
     const { username, email, password } = req.body;
 
     try {
@@ -75,7 +75,7 @@ app.post('/api/register', async (req, res) => {
 });
 
 // Login Route
-app.post('/api/login', async (req, res) => {
+app.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
     try {
