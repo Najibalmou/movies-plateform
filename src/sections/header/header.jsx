@@ -31,7 +31,7 @@ function Header() {
     const password = event.target.elements[2].value;
 
     try {
-        const response = await fetch('/register', { // Updated URL for Vercel
+        const response = await fetch('https://movies-plateform.vercel.app/register', { // Updated URL for Vercel
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, email, password }),
@@ -54,7 +54,7 @@ const handleLoginSubmit = async (event) => {
     event.preventDefault();
 
     try {
-        const response = await fetch('/login', { // Updated URL for Vercel
+        const response = await fetch('https://movies-plateform.vercel.app/login', { // Updated URL for Vercel
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password }),
