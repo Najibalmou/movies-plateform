@@ -20,8 +20,22 @@ const client = new MongoClient(uri, {
     }
 });
 
-// Middleware
-app.use(cors({ origin: 'http://localhost:5173' })); // Enable CORS
+// Middleware to allow only the production URL
+const allowedOrigins = [
+    'https://movies-plateform.vercel.app' // Only allow Vercel frontend URL
+];
+
+app.use(cors({
+    origin: (origin, callback) => {
+        // Allow requests without origin (like mobile apps or curl requests)
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('CORS not allowed for this origin'), false);
+        }
+    }
+}));
+
 app.use(express.json()); // Parse JSON request bodies
 
 // Connect to MongoDB
