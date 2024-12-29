@@ -22,7 +22,6 @@ function Header() {
     document.body.classList.toggle('dark-theme', !darkMode);
   };
 
-
   // Handle Register Submit
   const handleRegisterSubmit = async (event) => {
     event.preventDefault();
@@ -31,51 +30,49 @@ function Header() {
     const password = event.target.elements[2].value;
 
     try {
-        const response = await fetch('/api/register', { // Updated URL for Vercel
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, email, password }),
-        });
+      const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, email, password }),
+      });
 
-        const data = await response.json();
-        if (response.ok) {
-            alert(data.message);
-            closeRegister();
-        } else {
-            alert(data.message);
-        }
+      const data = await response.json(); // Parse JSON response
+      if (response.ok) {
+        alert(data.message);
+        closeRegister();
+      } else {
+        alert(data.message);
+      }
     } catch (error) {
-        console.error('Registration error:', error);
-        alert('Failed to register');
+      console.error('Registration error:', error);
+      alert('Failed to register');
     }
-};
+  };
 
-const handleLoginSubmit = async (event) => {
+  // Handle Login Submit
+  const handleLoginSubmit = async (event) => {
     event.preventDefault();
 
     try {
-        const response = await fetch('/api/login', { // Updated URL for Vercel
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password }),
-        });
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
 
-        const data = await response.json();
-        if (response.ok) {
-            localStorage.setItem('user', JSON.stringify(data.user));
-            alert(data.message);
-            navigate('/plateform');
-        } else {
-            alert(data.message);
-        }
+      const data = await response.json(); // Parse JSON response
+      if (response.ok) {
+        localStorage.setItem('user', JSON.stringify(data.user));
+        alert(data.message);
+        navigate('/plateform');
+      } else {
+        alert(data.message);
+      }
     } catch (error) {
-        console.error('Login error:', error);
-        alert('Login failed, please try again');
+      console.error('Login error:', error);
+      alert('Login failed, please try again');
     }
-};
-
-
-
+  };
 
   return (
     <>
@@ -137,14 +134,14 @@ const handleLoginSubmit = async (event) => {
                 placeholder="Email"
                 required
                 value={email}
-                onChange={(e) => setEmail(e.target.value)} // Handling input change
+                onChange={(e) => setEmail(e.target.value)}
               />
               <input
                 type="password"
                 placeholder="Password"
                 required
                 value={password}
-                onChange={(e) => setPassword(e.target.value)} // Handling input change
+                onChange={(e) => setPassword(e.target.value)}
               />
               <button type="submit" className="Login-btn-pop-up">Login</button>
             </form>
