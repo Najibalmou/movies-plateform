@@ -1,11 +1,11 @@
 import { MongoClient } from 'mongodb';
 
-const MONGO_URI = process.env.MONGO_URI;
+const MONGODB_URI = process.env.MONGODB_URI;
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     try {
-      const client = new MongoClient(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+      const client = new MongoClient(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
       await client.connect();
       const db = client.db();
       const users = db.collection('users');
