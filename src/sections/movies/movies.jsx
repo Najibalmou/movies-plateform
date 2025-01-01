@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import './movies.css';
+import BgImage from "./assets/wall2.jpg";
 
 function Movies() {
     const [movies, setMovies] = useState([]);
@@ -174,8 +175,53 @@ function Movies() {
     const displayedTvShows = showAllTv ? tvShows : tvShows.slice(0, 7);
     const displayedTopRatedMovies = showAllTopRated ? topRatedMovies : topRatedMovies.slice(0, 7);
 
+
+    // const [backgroundImage, setBackgroundImage] = useState("");
+
+    // useEffect(() => {
+    //     // Define the page number and movie index
+    //     const page = Math.ceil(70 / 20); // Calculate the page based on the movie index (25 in this case)
+    //     const movieIndex = (25 % 20) - 1; // Calculate the movie index within the page
+
+    //     fetch(`https://api.themoviedb.org/3/movie/popular?api_key=5235afbaadc922364aca22692c2f6a08&page=${page}`)
+    //       .then((response) => response.json())
+    //       .then((data) => {
+    //         console.log("API Response:", data); // Debug response
+    //         const movie = data.results[movieIndex]; // Get the movie from the current page
+    //         const imageUrl = movie?.poster_path
+    //           ? `https://image.tmdb.org/t/p/original${movie.poster_path}`
+    //           : "https://via.placeholder.com/800x400?text=No+Image+Available";
+    //         console.log("Image URL:", imageUrl);
+    //         setBackgroundImage(imageUrl);
+    //       })
+    //       .catch((error) => console.error("Error fetching movie data:", error));
+    //   }, []);
+
+
+
     return (
         <>
+
+            <div className="background-container">
+                <div
+                    className="background-image"
+                    style={{
+                        backgroundImage: `url(${BgImage})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        height: "550px",
+                        width: "100%",
+                    }}
+                ></div>
+                <div className="background-text">
+                    <h1>Welcome to Movie-Platform</h1>
+                    <p>Watch all the movies you want</p>
+                    <button className="login-bg-btn">Explore movies</button>
+                </div>
+            </div>
+
+
+
             {/* Movies Section */}
             <div>
                 <div className="movies-btnshow">
@@ -265,6 +311,7 @@ function Movies() {
                     </div>
                 </div>
             )}
+
         </>
     );
 }
