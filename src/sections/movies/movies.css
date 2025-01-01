@@ -232,3 +232,104 @@ img {
    
 
 
+        .background-container {
+            position: relative;
+            width: 100%;
+            height: 550px;
+          }
+          
+          .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            border-radius: 8px;
+            opacity: 1;
+          }
+          
+          .background-text {
+            width: 100%;
+            position: absolute;
+            top: 52%;
+            left: 30%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #000; /* Ensure text is visible on any background */
+            z-index: 2;
+          }
+          
+          .background-text h1 {
+            font-size: 2.9rem;
+            margin: 0;
+          }
+          
+          .background-text p {
+            font-size: 1.5rem;
+            margin: 10px 0 0;
+          }
+          .login-bg-btn {
+            margin-top: 10px;
+            background-color: #a52a2a;
+            color: #fff;
+            border: none;
+            width: 145px;
+            height: 40px;
+            border-radius: 5px;
+            font-family: 'Poppins';
+            font-size: 16px;
+            cursor: pointer;
+          }
+          
+          
+          @media (max-width: 768px) {
+            .navbar {
+              display: none; /* Hide navbar by default */
+              flex-direction: column;
+              width: 100%;
+              background-color: var(--background-color);
+            }
+
+            .background-text h1 {
+                font-size: 1.1rem;
+                margin-left: 60px;
+              }
+              
+              .background-text p {
+                font-size: 1rem;
+                margin-left: 50px;
+              }
+              .login-bg-btn {
+                margin-top: 10px;
+                background-color: #a52a2a;
+                color: #fff;
+                border: none;
+                width: 145px;
+                height: 40px;
+                border-radius: 5px;
+                font-family: 'Poppins';
+                font-size: 16px;
+                cursor: pointer;
+              }
+
+
+
+            .popup-content {
+                background-color: red;
+                color: white;
+                padding: 10px 20px;
+                border-radius: 10px;
+                text-align: center;
+                position: relative;
+                width: 400px;
+                height: 60px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                margin-bottom: 540px;
+                margin-right: 10px;
+                margin-left: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
