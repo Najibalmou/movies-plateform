@@ -1,10 +1,10 @@
 import './header.css';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
 
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -22,7 +22,8 @@ function Header() {
     document.body.classList.toggle('dark-theme', !darkMode);
   };
 
-  // Handle Register Submit
+
+
   const handleRegisterSubmit = async (event) => {
     event.preventDefault();
     const username = event.target.elements[0].value;
@@ -30,13 +31,15 @@ function Header() {
     const password = event.target.elements[2].value;
 
     try {
-      const response = await fetch('/api/register', {
+      const response = await fetch('http://localhost:5000/api/register', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({ username, email, password }),
       });
 
-      const data = await response.json(); // Parse JSON response
+      const data = await response.json();
       if (response.ok) {
         alert(data.message);
         closeRegister();
@@ -49,18 +52,19 @@ function Header() {
     }
   };
 
-  // Handle Login Submit
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await fetch('/api/login', {
+      const response = await fetch('http://localhost:5000/api/login', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({ email, password }),
       });
 
-      const data = await response.json(); // Parse JSON response
+      const data = await response.json();
       if (response.ok) {
         localStorage.setItem('user', JSON.stringify(data.user));
         alert(data.message);
@@ -74,16 +78,47 @@ function Header() {
     }
   };
 
+  function toggleMenu() {
+    const navbar = document.querySelector('.navbar');
+    const isDisplayed = window.getComputedStyle(navbar).display === 'flex';
+
+    if (isDisplayed) {
+      navbar.style.display = 'none'; // Hide the navbar
+    } else {
+      navbar.style.display = 'flex'; // Show the navbar
+    }
+  }
+
+  function closeMenu() {
+    const navbar = document.querySelector('.navbar');
+    navbar.style.display = 'none'; // Close the menu when a link is clicked
+  }
+
+
+
   return (
     <>
       <section className="nav-sec">
         <Link to="/" className="logo">NA-MOVIES APP</Link>
-        <div className="navbar">
-          <Link to="/">Home</Link>
-          <a href="#">Movies</a>
-          <a href="#">TV Shows</a>
-          <a href="#">Top Rated</a>
+        <div className="nav-links">
+          <div className="navbar">
+            <Link to="/" onClick={() => closeMenu()}>Home</Link>
+            <Link to="/movies" onClick={() => closeMenu()}>Movies</Link>
+            <Link to="/tv-shows" onClick={() => closeMenu()}>TV Shows</Link>
+            <Link to="/top-rated" onClick={() => closeMenu()}>Top Rated</Link>
+
+            {/* Login and Register buttons in the dropdown */}
+            <div className="login-register-mobile">
+              <button className="login" onClick={openLogin}>Login</button>
+              <button className="register" onClick={openRegister}>Register</button></div>
+          </div>
         </div>
+
+
+
+
+
+
 
         <div className="login-register-div">
           <div className="theme-toggle-container">
@@ -100,11 +135,15 @@ function Header() {
               <span className="ball"></span>
             </label>
           </div>
-          <div>
+          <div className="login-register-computer">
             <a href="#" className="login" onClick={openLogin}>Login</a>
             <a href="#" className="register" onClick={openRegister}>Register</a>
           </div>
         </div>
+        <button className="hamburger-menu" onClick={() => toggleMenu()}>
+          ☰
+        </button>
+
       </section>
 
       {/* Register Popup */}
