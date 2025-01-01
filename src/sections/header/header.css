@@ -261,12 +261,7 @@
 
 /* Mobile styling */
 @media (max-width: 768px) {
-  .navbar {
-    display: none; /* Hide navbar by default */
-    flex-direction: column;
-    width: 100%;
-    background-color: var(--background-color);
-  }
+
 
   .navbar a {
     display: block;
@@ -286,11 +281,55 @@
     background: none;
     border: none;
     cursor: pointer;
+    z-index: 3;
   }
 
   .login-register-div {
     flex-direction: column;
   }
+
+  .navbar {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    display: none; /* Initially hidden */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #242524;
+    z-index: 3;
+  }
+  
+  .navbar a {
+    color: var(--link-color);
+    width: 100%;
+    background-color: #ececec;
+    text-decoration: none;
+    font-family: 'Poppins';
+    font-weight: 600;
+    margin: 15px 0;
+    font-size: 1.5rem;
+  }
+  
+  .navbar a:hover {
+    color: var(--link-hover-color);
+  }
+  
+  .login-register-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .login-register-mobile .login,
+  .login-register-mobile .register {
+    width: 150px;
+    text-align: center;
+    margin: 10px 0;
+  }
+  
 }
 
 /* For large screens */
