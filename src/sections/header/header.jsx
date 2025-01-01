@@ -81,13 +81,14 @@ function Header() {
   function toggleMenu() {
     const navbar = document.querySelector('.navbar');
     const isDisplayed = window.getComputedStyle(navbar).display === 'flex';
-
+  
     if (isDisplayed) {
       navbar.style.display = 'none'; // Hide the navbar
     } else {
       navbar.style.display = 'flex'; // Show the navbar
     }
   }
+  
 
   function closeMenu() {
     const navbar = document.querySelector('.navbar');
