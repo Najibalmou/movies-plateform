@@ -64,6 +64,7 @@
     text-decoration: none;
     font-family: 'Poppins';
     font-weight: 500;
+    border-bottom: 1px solid #ddd;
   }
   
   .navbar a:hover {
@@ -252,3 +253,49 @@
   body.dark .checkbox-label {
     background-color: #222;
   }
+
+  .login-register-mobile {
+    display: none;
+  }
+
+
+/* Mobile styling */
+@media (max-width: 768px) {
+  .navbar {
+    display: none; /* Hide navbar by default */
+    flex-direction: column;
+    width: 100%;
+    background-color: var(--background-color);
+  }
+
+  .navbar a {
+    display: block;
+    padding: 10px;
+  }
+  .login-register-computer {
+    display: none;
+  }
+
+  .login-register-mobile {
+    display: flex;
+  }
+
+  .hamburger-menu {
+    display: block;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .login-register-div {
+    flex-direction: column;
+  }
+}
+
+/* For large screens */
+@media (min-width: 769px) {
+  .hamburger-menu {
+    display: none;
+  }
+}
